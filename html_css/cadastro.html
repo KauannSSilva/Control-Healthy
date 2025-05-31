@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">    <title>Cadastrar - Control Healthy</title>
+    <link rel="shortcut icon" href="img/favicon-32x32.png" type="image/x-icon">
+    <link rel="stylesheet" href="style3.css">
+    <script src="animações.js" defer></script>
+</head>
+<!--NÃO MEXER NO CÓDIGO ACIMA, É IMPORTAÇÃO-->
+<body>
+    <!-- Formulário de cadastro de usuário -->
+    <form class="login cadastro" draggable="false">
+        <!-- Ícone de usuário -->
+        <svg width="55px" height="45px" viewBox="0 0 24 24" fill="gray" xmlns="http://www.w3.org/2000/svg" class="fotouser" draggable="false">
+            <path d="M12 2C9.79086 2 8 3.79086 8 6C8 8.20914 9.79086 10 12 10C14.2091 10 16 8.20914 16 6C16 3.79086 14.2091 2 12 2Z"/>
+            <path d="M4 20C4 16.6863 6.68629 14 10 14H14C17.3137 14 20 16.6863 20 20V21H4V20Z"/>
+        </svg>
+        <!-- Ícone de email -->
+        <svg width="55px" height="45px" viewBox="0 0 24 24" fill="gray" xmlns="http://www.w3.org/2000/svg" class="iconemail" draggable="false">
+            <path d="M4 4H20C21.1 4 22 4.9 22 6V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6C2 4.9 2.9 4 4 4ZM20 6L12 13L4 6H20ZM4 18H20V8L12 15L4 8V18Z"/>
+        </svg>
+        <!-- Ícone de cadeado (senha) -->
+        <svg width="55px" height="45px" viewBox="0 0 24 24" fill="gray" xmlns="http://www.w3.org/2000/svg" class="cadeado" draggable="false">
+            <path d="M17 8H16V6C16 3.79 14.21 2 12 2C9.79 2 8 3.79 8 6V8H7C5.9 8 5 8.9 5 10V20C5 21.1 5.9 22 7 22H17C18.1 22 19 21.1 19 20V10C19 8.9 18.1 8 17 8ZM10 6C10 4.9 10.9 4 12 4C13.1 4 14 4.9 14 6V8H10V6ZM12 17C11.45 17 11 16.55 11 16C11 15.45 11.45 15 12 15C12.55 15 13 15.45 13 16C13 16.55 12.55 17 12 17Z"/>
+        </svg>
+        <!-- Legenda de acesso -->
+        <legend class="acess">
+            Cadastrar
+        </legend>
+        <!-- Campo de nome -->
+        <div>
+            <label>
+                <input class="name" type="text" id="name" placeholder="Digite seu nome" required>
+            </label>
+        </div>
+        <!-- Campo de email -->
+        <div>
+            <label>
+                <input class="email" type="email" id="email" placeholder="Digite seu email" required>
+            </label>
+        </div>
+        <!-- Campo de senha -->
+        <div>
+            <label>
+                <input class="password" type="password" id="password" placeholder="Digite uma senha" required>
+            </label>
+        </div>
+        <!-- Seleção de tipo de cadastro -->
+        <div class="radio-group">
+            <label class="radio-option">
+                <input type="radio" name="tipoCadastro" value="paciente" checked>
+                <span>Paciente</span>
+            </label>
+            <label class="radio-option">
+                <input type="radio" name="tipoCadastro" value="medico">
+                <span>Médico</span>
+            </label>
+        </div>
+        <!-- Botão de cadastro -->
+        <div class="cad">
+        <button type="submit" class="Cadastrar">Cadastrar</button>
+    </div>
+    </form>
+    <!-- Modal de sucesso no cadastro -->
+    <div id="cadastroSuccess" class="hidden success-message">
+        Cadastro realizado com sucesso!<br>
+        Voltando para a tela inicial.
+    </div>
+</body>
+</html>
