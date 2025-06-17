@@ -1,0 +1,268 @@
+/* Reset de margens, paddings e fonte padrão */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+/* Corpo da página principal do médico */
+body {
+  background-color: #fff;
+  color: #333;
+  padding: 0;
+  margin: auto;
+  max-width: 1200px; /* Limita largura máxima do conteúdo */
+}
+
+/* Header fixo no topo com espaçamento e cor */
+header {
+  background-color: #f58220;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 60px;
+  color: white;
+}
+
+/* Título do header */
+header h1 {
+  font-size: 1.2rem;
+}
+
+/* Menu de perfil (avatar e dropdown) */
+.profile-menu {
+  position: relative;
+}
+
+/* Ícone do perfil é clicável */
+.profile-icon {
+  cursor: pointer;
+}
+
+/* Dropdown do menu de perfil */
+.dropdown {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 100%;
+  background-color: #333;
+  color: white;
+  min-width: 150px;
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+}
+
+/* Links do dropdown */
+.dropdown a {
+  display: block;
+  padding: 10px;
+  text-decoration: none;
+  color: white;
+}
+
+/* Hover nos links do dropdown */
+.dropdown a:hover {
+  background-color: #444;
+}
+
+/* Mostra o dropdown ao passar o mouse */
+.profile-menu:hover .dropdown {
+  display: block;
+}
+
+/* Título de seção (ex: "Seus Pacientes") */
+.section-title {
+  margin: 20px;
+  background-color: #88b04b;
+  color: white;
+  padding: 8px;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+/* Caixa que envolve a tabela de pacientes */
+.patients-box {
+  margin: 30px 20px 20px;
+  border: 1px solid #88b04b;
+  border-radius: 10px;
+  overflow: hidden;
+  max-height: 2000px;
+  opacity: 1;
+  transition: max-height 0.5s cubic-bezier(.4,0,.2,1), opacity 0.4s;
+}
+
+/* Título dentro da caixa de pacientes */
+.patients-box h2 {
+  background-color: #88b04b;
+  color: white;
+  padding: 10px;
+  font-size: 1.2rem;
+}
+
+/* Tabela de pacientes */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+/* Células da tabela */
+th, td {
+  padding: 10px;
+  text-align: left;
+}
+
+/* Cabeçalho da tabela */
+th {
+  background-color: #fbb040;
+  color: white;
+}
+
+/* Linhas da tabela */
+td {
+  background-color: #fff;
+}
+
+/* Destaca colunas de pressão */
+td:nth-child(4), td:nth-child(5) {
+  color: #f58220;
+  font-weight: bold;
+}
+
+/* Container dos botões abaixo da tabela */
+.btn-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin: 20px 0;
+}
+
+/* Botões principais (ex: gerar gráfico, exportar) */
+.btn {
+  background-color: #f58220;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+/* Efeito hover nos botões */
+.btn:hover {
+  background-color: #e37200;
+}
+
+/* Botão "Seus Pacientes" estilizado */
+.section-title.toggle-btn {
+  width: 300px;
+  margin: 20px 0 0 20px;
+  display: block;
+  text-align: left;
+}
+
+/* Estilo base do botão toggle */
+.toggle-btn {
+  width: 100%;
+  background: #88b04b;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  padding: 10px 8px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.2s;
+  margin: 20px 0 0 0;
+  outline: none;
+  display: block;
+}
+
+/* Hover no botão toggle */
+.toggle-btn:hover {
+  background: #6a8e3c;
+}
+
+/* Animação para esconder a caixa de pacientes */
+.patients-box.hide {
+  max-height: 0;
+  opacity: 0;
+  transition: max-height 0.5s cubic-bezier(.4,0,.2,1), opacity 0.3s;
+  padding: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+/* Responsividade para telas até 600px */
+@media (max-width: 600px) {
+  th, td {
+    padding: 8px 6px;
+    font-size: 0.9rem;
+  }
+  header h1 {
+    font-size: 1rem;
+  }
+}
+
+/* Responsividade para telas até 430px (celulares) */
+@media (max-width: 430px) {
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px 8px;
+    gap: 8px;
+  }
+
+  header h1 {
+    font-size: 0.95rem;
+    margin-bottom: 6px;
+  }
+
+  .section-title,
+  .patients-box {
+    margin: 10px 4px;
+  }
+
+  .patients-box h2 {
+    font-size: 1rem;
+    padding: 8px;
+  }
+
+  table {
+    font-size: 0.92rem;
+  }
+
+  th, td {
+    padding: 7px 3px;
+    font-size: 0.85rem;
+  }
+
+  .btn-container {
+    flex-direction: column;
+    gap: 10px;
+    margin: 12px 0;
+  }
+
+  .btn {
+    width: 96%;
+    font-size: 1em;
+    padding: 10px 5px;
+    border-radius: 16px;
+    margin-left: 2vw;
+  }
+
+  .profile-menu {
+    width: 100%;
+    margin-top: 6px;
+  }
+
+  /* Centraliza e ajusta o botão toggle no mobile */
+  .section-title.toggle-btn {
+    width: 90vw;
+    min-width: 180px;
+    max-width: 320px;
+    margin: 16px auto 0 auto;
+    display: block;
+    text-align: center;
+  }
+}
