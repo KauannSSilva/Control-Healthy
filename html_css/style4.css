@@ -1,0 +1,311 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f7f7f7;
+}
+
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+.btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.orange {
+    background-color: red;
+    color: white;
+}
+
+.black {
+    background-color: #ffff;
+    color: #000;
+    border: 1px solid #000;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.form-container {
+    background-color: #f8c739;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+h2, h3 {
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+input {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.register {
+    background-color: #8d2d0f;
+    color: white;
+    margin-top: 20px;
+}
+
+.savepressure{
+    background-color: #ffffff;
+    color: #000;
+    margin-left: 20px;
+}
+
+.input-group {
+    margin-bottom: 15px;
+    width: 100%;
+  }
+  
+  .input {
+    width: 100%;
+    padding: 10px 10px 10px 40px; /* Espaço à esquerda para o ícone */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-repeat: no-repeat;
+    background-position: 10px center;
+    background-size: 20px 20px;
+  }
+  
+  /* Ícones específicos (Nome, endereço e Telefone) */
+  .input.nome {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="gray" viewBox="0 0 24 24"><path d="M12 12c2.761 0 5-2.239 5-5s-2.239-5-5-5-5 2.239-5 5 2.239 5 5 5zm0 2c-3.866 0-7 3.134-7 7h2c0-2.761 2.239-5 5-5s5 2.239 5 5h2c0-3.866-3.134-7-7-7z"/></svg>');
+  }
+  
+  .input.endereco {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="gray" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5z"/></svg>');
+  }
+  
+  .input.telefone {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="gray" viewBox="0 0 24 24"><path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.11-.21c1.21.49 2.53.76 3.89.76a1 1 0 011 1v3.5a1 1 0 01-1 1C10.61 21.5 2.5 13.39 2.5 3a1 1 0 011-1H7a1 1 0 011 1c0 1.36.26 2.68.76 3.89a1 1 0 01-.21 1.11l-2.2 2.2z"/></svg>');
+  }
+
+  /* Ícones específicos (Sistólica e Diastólica)*/
+
+  .input.pressure {
+    background-repeat: no-repeat;
+    background-position: 10px center;
+    padding-left: 40px; /* espaço para o ícone */
+  }
+  
+  .input.systolic {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="gray" viewBox="0 0 24 24"><path d="M20 6H4c-1.1 0-2 .9-2 2v8c0 1.1.9 2 2 2h4l1.5-3 2.5 5 3.5-7 1.5 3H20c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm0 10h-4.3l-2.2-4.4-3.5 7-2.5-5L6.3 16H4V8h16v8z"/></svg>');
+  }
+  
+  .input.diastolic {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="gray" viewBox="0 0 24 24"><path d="M12.1 8.64l-1.1 2.45H8l3.3 7.26L14 9.64h2.6c.45 0 .67-.54.35-.85l-4-4.11a.5.5 0 0 0-.72 0l-1.63 1.7a.5.5 0 0 0 .7.71l.8-.84 2.7 2.77H12.1z"/></svg>'); 
+  }
+
+  /* responsividade para smartphones */
+  @media (max-width: 700px) {
+  .container {
+    max-width: 99vw;
+    padding: 12px;
+    border-radius: 8px;
+    gap: 12px;
+  }
+
+  .header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+
+  .btn, .save, .register, .savepressure {
+    width: 100%;
+    font-size: 1.1em;
+    padding: 14px 0;
+    margin: 0 0 10px 0;
+  }
+
+  .form-container {
+    padding: 14px;
+    border-radius: 8px;
+  }
+
+  h2, h3 {
+    font-size: 1.3em;
+    margin-bottom: 10px;
+  }
+
+  input, .input {
+    width: 100%;
+    font-size: 1.05em;
+    padding: 12px 10px 12px 40px;
+    margin: 10px 0;
+  }
+
+  .input-group {
+    margin-bottom: 12px;
+  }
+}
+  @media (max-width: 430px) {
+  .container {
+    max-width: 98vw;
+    padding: 8px;
+    border-radius: 6px;
+    gap: 10px;
+  }
+
+  .header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+
+  .btn, .save, .register, .savepressure {
+    width: 100%;
+    font-size: 1em;
+    padding: 12px 0;
+    margin: 0 0 8px 0;
+  }
+
+  .form-container {
+    padding: 10px;
+    border-radius: 6px;
+  }
+
+  h2, h3 {
+    font-size: 1.2em;
+    margin-bottom: 8px;
+  }
+
+  input, .input {
+    width: 100%;
+    font-size: 1em;
+    padding: 10px 10px 10px 38px;
+    margin: 8px 0;
+  }
+
+  .input-group {
+    margin-bottom: 10px;
+  }
+}
+@media (max-width: 700px) {
+  body {
+    /* Área segura iOS e Android */
+    padding-top: env(safe-area-inset-top, 0);
+    padding-bottom: env(safe-area-inset-bottom, 0);
+    padding-left: env(safe-area-inset-left, 0);
+    padding-right: env(safe-area-inset-right, 0);
+    box-sizing: border-box;
+    background-color: #f7f7f7;
+  }
+  .container {
+    max-width: 98vw;
+    padding: 10px;
+    border-radius: 8px;
+    gap: 10px;
+    margin: 10px auto;
+  }
+  .header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+  .btn, .save, .register, .savepressure {
+    width: 100%;
+    font-size: 1.1em;
+    padding: 14px 0;
+    margin: 0 0 10px 0;
+    border-radius: 6px;
+  }
+  .form-container {
+    padding: 12px;
+    border-radius: 8px;
+  }
+  h2, h3 {
+    font-size: 1.2em;
+    margin-bottom: 8px;
+  }
+  input, .input {
+    width: 100%;
+    font-size: 1em;
+    padding: 12px 10px 12px 40px;
+    margin: 8px 0;
+    border-radius: 6px;
+  }
+  .input-group {
+    margin-bottom: 10px;
+  }
+}
+
+@media (max-width: 430px) {
+  body {
+    /* Área segura iOS e Android */
+    padding-top: env(safe-area-inset-top, 0);
+    padding-bottom: env(safe-area-inset-bottom, 0);
+    padding-left: env(safe-area-inset-left, 0);
+    padding-right: env(safe-area-inset-right, 0);
+    box-sizing: border-box;
+    background-color: #f7f7f7;
+  }
+  .container {
+    max-width: 98vw;
+    padding: 6px;
+    border-radius: 6px;
+    gap: 8px;
+    margin: 8px auto;
+  }
+  .header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+  .btn, .save, .register, .savepressure {
+    width: 100%;
+    font-size: 1em;
+    padding: 12px 0;
+    margin: 0 0 8px 0;
+    border-radius: 6px;
+  }
+  .form-container {
+    padding: 8px;
+    border-radius: 6px;
+  }
+  h2, h3 {
+    font-size: 1.1em;
+    margin-bottom: 6px;
+  }
+  input, .input {
+    width: 100%;
+    font-size: 1em;
+    padding: 10px 10px 10px 38px;
+    margin: 6px 0;
+    border-radius: 6px;
+  }
+  .input-group {
+    margin-bottom: 8px;
+  }
+}
