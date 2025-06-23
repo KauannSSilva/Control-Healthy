@@ -51,6 +51,10 @@ TELA DE VALIDAÇÃO DAS CREDENCIAIS DO PACIENTE:
 
 ![Screenshot mostrando a tela para realizar login como paciente](assets/TELA_VALIDAR_PACIENTE.png)
 
+TELA INICIAL DO PACIENTE:
+
+![Screenshot mostrando a tela para realizar login como paciente](assets/TELA_PACIENTE1.png)
+
 Gerenciamento de Usuários (CRUD): Adição, listagem, edição e exclusão de usuários do sistema.
 
 Registro de Pressão Arterial: Interface para registrar medições de pressão sistólica e diastólica, com limite de até 2 registros por dia por paciente.
