@@ -47,7 +47,7 @@ TELA DE VALIDAÇÃO DAS CREDENCIAIS DO MÉDICO:
 
 ![Screenshot mostrando a tela para realizar login como médico](assets/TELA_VALIDAR_MEDICO.png)
 
-TELA DE VALIDAÇÃO DAS CREDENCIAIS DO MÉDICO:
+TELA DE VALIDAÇÃO DAS CREDENCIAIS DO PACIENTE:
 
 ![Screenshot mostrando a tela para realizar login como paciente](assets/TELA_VALIDAR_PACIENTE.png)
 
