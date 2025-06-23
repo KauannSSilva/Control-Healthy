@@ -41,7 +41,7 @@ Cadastro de Usuários: Permite o registro de pacientes e médicos.
 
 TELA PARA REALIZAR NOVO CADASTRO:
 
-![Screenshot mostrando a tela inicial do site](assets/TELA_CADASTROL.png)
+![Screenshot mostrando a tela para realizar novo cadastro](assets/TELA_CADASTRO.png)
 
 Gerenciamento de Usuários (CRUD): Adição, listagem, edição e exclusão de usuários do sistema.
 
