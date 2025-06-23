@@ -53,11 +53,11 @@ TELA DE VALIDAÇÃO DAS CREDENCIAIS DO PACIENTE:
 
 TELA INICIAL DO PACIENTE:
 
-![Screenshot mostrando a tela para realizar login como paciente](assets/TELA_PACIENTE1.png)
+![Screenshot mostrando a tela após realizar login como paciente](assets/TELA_PACIENTE1.png)
 
 TELA INICIAL DO MÉDICO:
 
-![Screenshot mostrando a tela para realizar login como paciente](assets/TELA_MEDICO1.png)
+![Screenshot mostrando a tela após realizar login como medico](assets/TELA_MEDICO1.png)
 
 Gerenciamento de Usuários (CRUD): Adição, listagem, edição e exclusão de usuários do sistema.
 
