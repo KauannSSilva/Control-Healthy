@@ -39,6 +39,10 @@ Autenticação de Usuários: Tela de login segura, com perfis diferenciados para
 
 Cadastro de Usuários: Permite o registro de pacientes e médicos.
 
+TELA PARA REALIZAR NOVO CADASTRO:
+
+![Screenshot mostrando a tela inicial do site](assets/TELA_CADASTROL.png)
+
 Gerenciamento de Usuários (CRUD): Adição, listagem, edição e exclusão de usuários do sistema.
 
 Registro de Pressão Arterial: Interface para registrar medições de pressão sistólica e diastólica, com limite de até 2 registros por dia por paciente.
