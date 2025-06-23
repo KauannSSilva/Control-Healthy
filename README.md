@@ -15,9 +15,11 @@ Professor Orientador:
 Tulio Cearamicoli Vivaldini
 
 Sobre o Projeto
-O Control Healthy é um sistema web desenvolvido para o monitoramento e gestão da pressão arterial de pacientes, com foco na disciplina de Programação de Soluções Computacionais. O projeto contribui para o Objetivo de Desenvolvimento Sustentável (ODS) 3 da ONU — Saúde e Bem-Estar — ao facilitar o acompanhamento de pacientes hipertensos por profissionais de saúde.
 
 ![Screenshot mostrando a tela inicial do site](assets/TELA_INICIAL.png)
+
+
+O Control Healthy é um sistema web desenvolvido para o monitoramento e gestão da pressão arterial de pacientes, com foco na disciplina de Programação de Soluções Computacionais. O projeto contribui para o Objetivo de Desenvolvimento Sustentável (ODS) 3 da ONU — Saúde e Bem-Estar — ao facilitar o acompanhamento de pacientes hipertensos por profissionais de saúde.
 
 A hipertensão é uma condição crônica que exige acompanhamento contínuo, e a ausência de ferramentas adequadas pode dificultar a avaliação de tratamentos e a prevenção de complicações graves, como doenças cardíacas e acidentes vasculares cerebrais. O Control Healthy oferece uma solução robusta para que profissionais de saúde e pacientes possam registrar, visualizar e analisar dados de saúde de forma eficiente.
 
