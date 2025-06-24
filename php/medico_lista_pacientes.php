@@ -1,7 +1,7 @@
 <?php
 session_start();
+require 'conexao.php';
 header('Content-Type: application/json');
-require_once("conexao.php");
 
 if (!isset($_SESSION['usuario_id']) || $_SESSION['usuario_tipo'] !== 'medico') {
     echo json_encode([]);
@@ -9,47 +9,23 @@ if (!isset($_SESSION['usuario_id']) || $_SESSION['usuario_tipo'] !== 'medico') {
 }
 
 $medico_id = $_SESSION['usuario_id'];
-$pacientes = [];
 
-/*
-Esta consulta SQL agora busca os pacientes do médico e, para cada um,
-encontra a última medição de pressão registrada.
-*/
-$sql = "
-    SELECT 
-        u.id, 
-        u.nome, 
-        u.email,
-        rp.sistolica,
-        rp.diastolica,
-        rp.data_hora as ultima_afericao
-    FROM medico_paciente mp
-    JOIN usuarios u ON mp.paciente_id = u.id
-    LEFT JOIN (
-        SELECT 
-            paciente_id, 
-            MAX(data_hora) as max_data 
-        FROM registros_pressao 
-        GROUP BY paciente_id
-    ) as max_registros ON max_registros.paciente_id = u.id
-    LEFT JOIN registros_pressao rp ON rp.paciente_id = max_registros.paciente_id AND rp.data_hora = max_registros.max_data
-    WHERE mp.medico_id = ?
-    ORDER BY u.nome ASC
-";
+$sql = "SELECT u.id, u.nome, u.email, 
+               (SELECT rp.sistolica FROM registros_pressao rp WHERE rp.paciente_id = u.id ORDER BY rp.data_hora DESC LIMIT 1) as ultima_sistolica,
+               (SELECT rp.diastolica FROM registros_pressao rp WHERE rp.paciente_id = u.id ORDER BY rp.data_hora DESC LIMIT 1) as ultima_diastolica,
+               (SELECT rp.data_hora FROM registros_pressao rp WHERE rp.paciente_id = u.id ORDER BY rp.data_hora DESC LIMIT 1) as ultima_data_hora
+        FROM usuarios u
+        JOIN medico_paciente mp ON u.id = mp.paciente_id
+        WHERE mp.medico_id = $1";
+        
+$result = pg_query_params($conn, $sql, array($medico_id));
 
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("i", $medico_id);
-$stmt->execute();
-$result = $stmt->get_result();
-
-if ($result->num_rows > 0) {
-    while ($row = $result->fetch_assoc()) {
-        $pacientes[] = $row;
-    }
+if ($result) {
+    $pacientes = pg_fetch_all($result);
+    echo json_encode($pacientes ?: []);
+} else {
+    echo json_encode([]);
 }
 
-$stmt->close();
-$conn->close();
-
-echo json_encode($pacientes);
+pg_close($conn);
 ?>
