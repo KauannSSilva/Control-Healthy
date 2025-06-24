@@ -1,64 +1,78 @@
 <?php
 session_start();
-require('fpdf/fpdf.php');
+require 'conexao.php'; // Usa o novo arquivo de conexão para PostgreSQL
+require 'fpdf/fpdf.php'; // Inclui a biblioteca para gerar o PDF
 
-// 1. Segurança: Garante que um médico logado possa executar esta ação
+// Verifica se o usuário (médico) está logado
 if (!isset($_SESSION['usuario_id']) || $_SESSION['usuario_tipo'] !== 'medico') {
-    die("Acesso negado. Por favor, faça o login como médico.");
+    die("Acesso não autorizado. Faça login como médico para gerar o relatório.");
 }
 
-// 2. Validação: Verifica se os dados necessários (imagem e nome) foram enviados
-if (empty($_POST['imagem_grafico']) || empty($_POST['paciente_nome'])) {
-    die("Erro: Dados insuficientes para gerar o PDF. Tente novamente.");
+// Pega os dados enviados pelo formulário (via POST)
+$paciente_id = $_POST['paciente_id'] ?? 0;
+$chartImage = $_POST['chartImage'] ?? '';
+
+// Validação básica dos dados recebidos
+if (empty($paciente_id) || empty($chartImage)) {
+    die("Dados insuficientes para gerar o PDF.");
 }
 
-// 3. Recebe e prepara os dados
-$paciente_nome = $_POST['paciente_nome'];
-$base64_image = $_POST['imagem_grafico'];
+// 1. Buscar o nome do paciente no banco usando as funções do PostgreSQL
+$sql_paciente = "SELECT nome FROM usuarios WHERE id = $1";
+$result_paciente = pg_query_params($conn, $sql_paciente, array($paciente_id));
 
-// Remove o prefixo "data:image/png;base64," da string da imagem
-$base64_image = str_replace('data:image/png;base64,', '', $base64_image);
-$base64_image = str_replace(' ', '+', $base64_image);
-$image_data = base64_decode($base64_image);
+$paciente_nome = "Desconhecido";
+if ($result_paciente && pg_num_rows($result_paciente) > 0) {
+    $paciente = pg_fetch_assoc($result_paciente);
+    $paciente_nome = $paciente['nome'];
+}
 
-// Cria um arquivo temporário para a imagem, pois o FPDF precisa de um caminho de arquivo
-$temp_file = tempnam(sys_get_temp_dir(), 'chart_') . '.png';
-file_put_contents($temp_file, $image_data);
+pg_close($conn); // A conexão já pode ser fechada
 
-// 4. Cria a estrutura do PDF
-class PDF extends FPDF {
-    // Cabeçalho do PDF
-    function Header() {
-        $this->SetFont('Arial', 'B', 16);
-        $this->Cell(0, 10, utf8_decode('Relatório de Pressão Arterial'), 0, 1, 'C');
-        $this->Ln(5);
+// 2. Preparar a imagem recebida
+// Remove o cabeçalho 'data:image/png;base64,' para obter apenas os dados da imagem
+$img_data = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $chartImage));
+// Cria um arquivo temporário em memória para a imagem
+$img_file = 'temp_chart_image.png';
+file_put_contents($img_file, $img_data);
+
+// 3. Gerar o PDF com os dados (a lógica do FPDF não muda)
+class PDF extends FPDF
+{
+    function Header()
+    {
+        $this->SetFont('Arial', 'B', 14);
+        $this->Cell(0, 10, utf8_decode('Gráfico de Evolução da Pressão Arterial'), 0, 1, 'C');
+        $this->Ln(10);
     }
 
-    // Rodapé do PDF
-    function Footer() {
-        $this->SetY(-15); // Posição a 1.5 cm do final
+    function Footer()
+    {
+        $this->SetY(-15);
         $this->SetFont('Arial', 'I', 8);
-        $this->Cell(0, 10, 'Pagina ' . $this->PageNo() . '/{nb}', 0, 0, 'C');
+        $this->Cell(0, 10, 'Pagina ' . $this->PageNo(), 0, 0, 'C');
     }
 }
 
-// 5. Gera o PDF
-$pdf = new PDF('P', 'mm', 'A4'); // P = Retrato (Portrait), mm = milímetros, A4 = tamanho
-$pdf->AliasNbPages();
+// Cria uma instância do PDF
+$pdf = new PDF();
 $pdf->AddPage();
-$pdf->SetFont('Arial', '', 14);
+$pdf->SetFont('Arial', '', 12);
 
 // Adiciona o nome do paciente
-$pdf->Cell(0, 10, utf8_decode('Paciente: ' . $paciente_nome), 0, 1, 'C');
-$pdf->Ln(10); // Pula uma linha
+$pdf->Cell(0, 10, 'Paciente: ' . utf8_decode($paciente_nome), 0, 1);
+$pdf->Ln(5);
 
-// Adiciona a imagem do gráfico
-// Largura da imagem de 190mm, centralizada em uma página A4 (210mm de largura)
-$pdf->Image($temp_file, 10, 40, 190, 0, 'PNG');
+// Adiciona a imagem do gráfico ao PDF
+if (file_exists($img_file)) {
+    // Adiciona a imagem centralizada na página (largura de 190mm)
+    $pdf->Image($img_file, 10, $pdf->GetY(), 190);
+    unlink($img_file); // Apaga o arquivo temporário da imagem
+} else {
+    $pdf->SetFont('Arial', 'B', 12);
+    $pdf->Cell(0, 10, utf8_decode('Erro ao carregar a imagem do gráfico.'), 0, 1, 'C');
+}
 
-// 6. Limpeza e Saída
-unlink($temp_file); // Apaga o arquivo de imagem temporário
-$pdf_filename = 'Grafico_Pressao_' . str_replace(' ', '_', $paciente_nome) . '.pdf';
-$pdf->Output('I', $pdf_filename); // 'I' envia o PDF para o navegador
-
+// Envia o PDF para o navegador
+$pdf->Output('D', 'relatorio_grafico_pressao.pdf');
 ?>
