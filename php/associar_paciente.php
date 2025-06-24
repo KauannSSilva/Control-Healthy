@@ -1,56 +1,36 @@
 <?php
 session_start();
+require 'conexao.php';
 header('Content-Type: application/json');
-require_once("conexao.php");
 
-// Garante que apenas um médico logado possa executar esta ação
 if (!isset($_SESSION['usuario_id']) || $_SESSION['usuario_tipo'] !== 'medico') {
-    echo json_encode(['status' => 'erro', 'mensagem' => 'Acesso negado.']);
+    echo json_encode(['status' => 'error', 'message' => 'Acesso não autorizado.']);
     exit;
 }
 
 $medico_id = $_SESSION['usuario_id'];
-$dados = json_decode(file_get_contents("php://input"), true);
-$paciente_email = $dados['email_paciente'] ?? '';
+$email_paciente = $_POST['email_paciente'] ?? '';
 
-if (empty($paciente_email)) {
-    echo json_encode(['status' => 'erro', 'mensagem' => 'O e-mail do paciente é obrigatório.']);
-    exit;
-}
+// Encontrar o ID do paciente pelo e-mail
+$sql_paciente = "SELECT id FROM usuarios WHERE email = $1 AND tipo = 'paciente'";
+$result_paciente = pg_query_params($conn, $sql_paciente, array($email_paciente));
 
-// 1. Encontrar o ID do paciente a partir do e-mail fornecido
-$stmt_pac = $conn->prepare("SELECT id FROM usuarios WHERE email = ? AND tipo = 'paciente'");
-$stmt_pac->bind_param("s", $paciente_email);
-$stmt_pac->execute();
-$result_pac = $stmt_pac->get_result();
+if ($result_paciente && pg_num_rows($result_paciente) > 0) {
+    $paciente = pg_fetch_assoc($result_paciente);
+    $paciente_id = $paciente['id'];
 
-if ($result_pac->num_rows === 0) {
-    echo json_encode(['status' => 'erro', 'mensagem' => 'Nenhum paciente encontrado com este e-mail.']);
-    exit;
-}
-$paciente_id = $result_pac->fetch_assoc()['id'];
-$stmt_pac->close();
+    // Inserir a associação
+    $sql_insert = "INSERT INTO medico_paciente (medico_id, paciente_id) VALUES ($1, $2)";
+    $result_insert = pg_query_params($conn, $sql_insert, array($medico_id, $paciente_id));
 
-// 2. Verificar se a associação já existe
-$stmt_check = $conn->prepare("SELECT medico_id FROM medico_paciente WHERE medico_id = ? AND paciente_id = ?");
-$stmt_check->bind_param("ii", $medico_id, $paciente_id);
-$stmt_check->execute();
-if ($stmt_check->get_result()->num_rows > 0) {
-    echo json_encode(['status' => 'erro', 'mensagem' => 'Este paciente já está associado a você.']);
-    exit;
-}
-$stmt_check->close();
-
-// 3. Se tudo estiver certo, inserir a nova associação
-$stmt_insert = $conn->prepare("INSERT INTO medico_paciente (medico_id, paciente_id) VALUES (?, ?)");
-$stmt_insert->bind_param("ii", $medico_id, $paciente_id);
-
-if ($stmt_insert->execute()) {
-    echo json_encode(['status' => 'ok', 'mensagem' => 'Paciente associado com sucesso! A lista será atualizada.']);
+    if ($result_insert) {
+        echo json_encode(['status' => 'success', 'message' => 'Paciente associado com sucesso!']);
+    } else {
+        echo json_encode(['status' => 'error', 'message' => 'Erro ao associar paciente. Ele já pode estar associado.']);
+    }
 } else {
-    echo json_encode(['status' => 'erro', 'mensagem' => 'Ocorreu um erro ao associar o paciente.']);
+    echo json_encode(['status' => 'error', 'message' => 'Paciente não encontrado com o e-mail fornecido.']);
 }
 
-$stmt_insert->close();
-$conn->close();
+pg_close($conn);
 ?>
