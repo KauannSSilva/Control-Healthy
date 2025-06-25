@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <link rel="stylesheet" href="style2.css" />
+    <script src="animações.js" defer></script>
+    <link rel="shortcut icon" href="img/favicon2-32x32.png" type="image/x-icon">
+    <title>Login do Paciente</title>
+  </head>
+  <body>
+    <form class="login1" autocomplete="on">
+        <legend class="acess">
+          Valide suas Informações
+        </legend>
+        <div class="paciente">
+          <img src="img/paciente.png.png" alt="Foto do paciente" width="150" height="140" draggable="false">
+        </div>
+        <svg width="60" height="50" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg" class="iconemail" aria-hidden="true"><path d="M4 4H20C21.1 4 22 4.9 22 6V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6C2 4.9 2.9 4 4 4ZM20 6L12 13L4 6H20ZM4 18H20V8L12 15L4 8V18Z"/>
+        </svg>
+        <svg width="60" height="50" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg" class="cadeado" aria-hidden="true"><path d="M17 8H16V6C16 3.79 14.21 2 12 2C9.79 2 8 3.79 8 6V8H7C5.9 8 5 8.9 5 10V20C5 21.1 5.9 22 7 22H17C18.1 22 19 21.1 19 20V10C19 8.9 18.1 8 17 8ZM10 6C10 4.9 10.9 4 12 4C13.1 4 14 4.9 14 6V8H10V6ZM12 17C11.45 17 11 16.55 11 16C11 15.45 11.45 15 12 15C12.55 15 13 15.45 13 16C13 16.55 12.55 17 12 17Z"/>
+        </svg>
+        <div>
+          <label>
+            <input class="email" type="email" id="email" placeholder="Digite seu email" required>
+          </label>
+        </div>
+        <div>
+          <label>
+            <input class="password" type="password" id="password" placeholder="Digite sua Senha" required>
+          </label>
+        </div>
+        <div class="Logar">
+          <button type="submit" class="Logar">
+            Logar
+          </button>
+        </div>
+        <div>
+          <a href="index.html" class="voltar" draggable="false">
+            Voltar
+          </a>
+          </div>
+    </form>
+
+    <div id="inline-feedback-message" class="feedback-box hidden"></div>
+
+    <div id="loginSuccess" class="hidden"><div class="checkmark">&#10004;</div>
+    <p>Login confirmado! Redirecionando...
+
+    </p>
+  </div>
+
+    <script>
+        document.querySelector("form.login1").addEventListener("submit", function (e) {
+            e.preventDefault();
+            const formData = new URLSearchParams();
+            formData.append('email', document.getElementById("email").value);
+            formData.append('senha', document.getElementById("password").value);
+            
+            const feedbackBox = document.getElementById("inline-feedback-message");
+            const successBox = document.getElementById("loginSuccess");
+            
+            feedbackBox.className = "feedback-box hidden";
+            successBox.classList.add("hidden");
+
+            fetch('../php/login.php', { method: 'POST', body: formData })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'ok') {
+                    // Mantém o comportamento de sucesso com a caixa no topo
+                    successBox.classList.remove("hidden");
+                    setTimeout(() => { window.location.href = "telapaciente.php"; }, 2000);
+                } else {
+                    // ATUALIZADO: Usa a nova caixa de feedback para o erro
+                    feedbackBox.textContent = "email ou senha estão incorretos";
+                    feedbackBox.className = "feedback-box error"; // Aplica o estilo de erro
+                    setTimeout(() => { feedbackBox.className = "feedback-box hidden"; }, 3000);
+                }
+            })
+            .catch(error => {
+                console.error('Erro na requisição:', error);
+                feedbackBox.textContent = "Erro de conexão.";
+                feedbackBox.className = "feedback-box error";
+                setTimeout(() => { feedbackBox.className = "feedback-box hidden"; }, 3000);
+            });
+        });
+    </script>
+  </body>
+</html>
