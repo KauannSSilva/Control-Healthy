@@ -1,142 +1,98 @@
-Autores
-Alex Geymeson Lemos de Araujo - RA: 82519534
+# Control Healthy
 
-Arthur de Assis Matos - RA: 825141669
+O Control Healthy é um sistema web desenvolvido para o monitoramento e a gestão da pressão arterial de pacientes. Este projeto foi criado no âmbito da disciplina de Programação de Soluções Computacionais, com o objetivo de contribuir para o **Objetivo de Desenvolvimento Sustentável (ODS) 3 da ONU: Saúde e Bem-Estar**.
 
-Kauann Dos Santos Silva - RA: 825141522
+A hipertensão é uma condição crônica que requer acompanhamento contínuo. A ausência de ferramentas adequadas pode dificultar a avaliação de tratamentos e a prevenção de complicações graves, como doenças cardíacas e acidentes vasculares cerebrais. A plataforma Control Healthy oferece uma solução robusta para que profissionais de saúde e pacientes possam registrar, visualizar e analisar dados de saúde de forma eficiente.
 
-Paulo Barreiro - RA: 825161684
+## Autores
 
-Victor Sousa de Carvalho - RA: 820266034
+* Alex Geymeson Lemos de Araujo - RA: 82519534
+* Arthur de Assis Matos - RA: 825141669
+* Kauann Dos Santos Silva - RA: 825141522
+* Paulo Barreiro - RA: 825161684
+* Victor Sousa de Carvalho - RA: 820266034
+* Vinicius Paiutti - RA: 824216626
 
-Vinicius Paiutti - RA: 824216626
+**Professor Orientador:** Tulio Cearamicoli Vivaldini
 
-Professor Orientador:
-Tulio Cearamicoli Vivaldini
+---
 
-Sobre o Projeto
+## Contribuição para a Saúde (ODS 3)
 
-![Screenshot mostrando a tela inicial do site](assets/TELA_INICIAL.png)
-
-
-O Control Healthy é um sistema web desenvolvido para o monitoramento e gestão da pressão arterial de pacientes, com foco na disciplina de Programação de Soluções Computacionais. O projeto contribui para o Objetivo de Desenvolvimento Sustentável (ODS) 3 da ONU — Saúde e Bem-Estar — ao facilitar o acompanhamento de pacientes hipertensos por profissionais de saúde.
-
-A hipertensão é uma condição crônica que exige acompanhamento contínuo, e a ausência de ferramentas adequadas pode dificultar a avaliação de tratamentos e a prevenção de complicações graves, como doenças cardíacas e acidentes vasculares cerebrais. O Control Healthy oferece uma solução robusta para que profissionais de saúde e pacientes possam registrar, visualizar e analisar dados de saúde de forma eficiente.
-
-Contribuição para a Saúde (ODS 3)
 O projeto está alinhado ao ODS 3 da ONU, contribuindo para:
 
-Apoio à Gestão de Doenças Crônicas: Facilita o monitoramento contínuo da hipertensão.
+* **Apoio à Gestão de Doenças Crônicas:** Facilita o monitoramento contínuo da hipertensão.
+* **Tomada de Decisão Baseada em Dados:** Permite a geração de gráficos e a exportação de dados para análise profissional.
+* **Empoderamento e Educação do Paciente:** A visualização gráfica auxilia o paciente na compreensão da sua condição e na adesão ao tratamento.
+* **Melhoria da Qualidade de Vida:** Auxilia na prevenção de complicações graves associadas à pressão alta.
 
-Tomada de Decisão Baseada em Dados: Permite a geração de gráficos e exportação de dados para análise profissional.
+---
 
-Empoderamento e Educação do Paciente: A visualização gráfica auxilia o paciente na compreensão da própria condição e na adesão ao tratamento.
+## Funcionalidades Principais
 
-Melhoria da Qualidade de Vida: Auxilia na prevenção de complicações graves associadas à pressão alta.
+O sistema oferece perfis distintos para pacientes e médicos com funcionalidades específicas:
 
-Principais Funcionalidades
-Autenticação de Usuários: Tela de login segura, com perfis diferenciados para pacientes e médicos.
+* **Autenticação e Cadastro de Usuários:** Telas de login e cadastro seguras para pacientes e médicos.
+* **Gerenciamento de Usuários (CRUD):** Adição, listagem, edição e exclusão de usuários.
+* **Registro de Pressão Arterial:** Interface para o paciente registrar medições de pressão sistólica e diastólica, com limite de até 2 registros por dia.
+* **Edição de Dados do Paciente:** Possibilidade de editar informações como nome, telefone e endereço.
+* **Associação Médico-Paciente:** Médicos podem se associar a pacientes para acompanhamento.
+* **Visualização de Histórico e Gráficos:** Geração de gráficos de linha (diários, semanais e mensais) para a evolução da pressão arterial.
+* **Geração de Relatórios em PDF:** Relatórios completos do histórico e gráficos de pressão arterial.
+* **Visualização da Lista de Pacientes:** Médicos têm acesso à lista de pacientes associados e suas últimas medições.
+* **Logout:** Encerramento seguro da sessão.
 
-Cadastro de Usuários: Permite o registro de pacientes e médicos.
+## Imagens do Projeto
 
-TELA PARA REALIZAR NOVO CADASTRO:
+* **Tela para Novo Cadastro:** ![Screenshot mostrando a tela para realizar novo cadastro](assets/TELA_CADASTRO.png)
+* **Tela de Validação das Credenciais (Médico):** ![Screenshot mostrando a tela para realizar login como médico](assets/TELA_VALIDAR_MEDICO.png)
+* **Tela de Validação das Credenciais (Paciente):** ![Screenshot mostrando a tela para realizar login como paciente](assets/TELA_VALIDAR_PACIENTE.png)
+* **Tela Inicial do Paciente:** ![Screenshot mostrando a tela após realizar login como paciente](assets/TELA_PACIENTE1.png)
+* **Tela Inicial do Médico:** ![Screenshot mostrando a tela após realizar login como medico](assets/TELA_MEDICO1.png)
 
-![Screenshot mostrando a tela para realizar novo cadastro](assets/TELA_CADASTRO.png)
+---
 
-TELA DE VALIDAÇÃO DAS CREDENCIAIS DO MÉDICO:
+## Stack Tecnológico
 
-![Screenshot mostrando a tela para realizar login como médico](assets/TELA_VALIDAR_MEDICO.png)
+* **Backend:** PHP 7.x ou superior
+* **Banco de Dados:** MySQL 5.x ou superior
+* **Frontend:** HTML, CSS, JavaScript (com Chart.js para gráficos)
+* **Servidor Web:** Apache (recomendado)
+* **Bibliotecas:** FPDF (para geração de PDFs), extensão GD do PHP (para manipulação de imagens)
 
-TELA DE VALIDAÇÃO DAS CREDENCIAIS DO PACIENTE:
+## Requisitos do Ambiente
 
-![Screenshot mostrando a tela para realizar login como paciente](assets/TELA_VALIDAR_PACIENTE.png)
+* PHP 7.x ou superior
+* MySQL 5.x ou superior
+* Servidor Web (Apache recomendado)
+* Extensão GD do PHP habilitada
+* Navegador moderno
 
-TELA INICIAL DO PACIENTE:
+## Configuração do Ambiente
 
-![Screenshot mostrando a tela após realizar login como paciente](assets/TELA_PACIENTE1.png)
+1.  **Banco de Dados:**
+    * Crie um banco de dados chamado `control_healthy`.
+    * Importe o arquivo `control_healthy.sql`.
+    * As tabelas `medico_paciente`, `informacoes_paciente`, e `registros_pressao` são criadas pelo sistema.
 
-TELA INICIAL DO MÉDICO:
+2.  **Configuração do PHP:**
+    * Edite os arquivos `php/conexao.php` e `php/db.php` para ajustar o usuário, senha e host do seu MySQL.
 
-![Screenshot mostrando a tela após realizar login como medico](assets/TELA_MEDICO1.png)
+3.  **Permissões:**
+    * Certifique-se de que o servidor web tenha permissão de leitura e escrita nas pastas necessárias para a geração de arquivos temporários de imagem e PDF.
 
-Gerenciamento de Usuários (CRUD): Adição, listagem, edição e exclusão de usuários do sistema.
+## Como Executar
 
-Registro de Pressão Arterial: Interface para registrar medições de pressão sistólica e diastólica, com limite de até 2 registros por dia por paciente.
+1.  Clone ou baixe o projeto para o seu servidor local.
+2.  Configure o banco de dados conforme as instruções acima.
+3.  Acesse a tela de cadastro (`html_css/cadastro.html`) para criar os usuários.
+4.  Faça login como paciente ou médico para acessar as funcionalidades específicas do seu perfil.
+5.  Utilize a plataforma para registrar medições, editar dados, associar pacientes, visualizar gráficos e gerar PDFs.
 
-Edição de Dados do Paciente: Possibilidade de editar informações como nome, telefone e endereço.
+---
 
-Associação Médico-Paciente: Médicos podem se associar a pacientes para acompanhamento.
+## Observações
 
-Visualização de Lista de Pacientes: Médicos têm acesso à lista de pacientes associados.
-
-Visualização de Histórico e Gráficos: Geração de gráficos de linha (diários, semanais e mensais) para análise da evolução da pressão arterial.
-
-Geração de Relatórios em PDF: Relatórios completos do histórico e gráficos de pressão arterial.
-
-Logout: Encerramento seguro da sessão do usuário.
-
-Navegação Simplificada: Menu principal centralizando o acesso a todas as funcionalidades.
-
-Stack Tecnológico
-Backend: PHP 7.x ou superior
-
-Banco de Dados: MySQL 5.x ou superior
-
-Frontend: HTML, CSS, JavaScript (com Chart.js para gráficos)
-
-Servidor Web: Apache recomendado
-
-Bibliotecas: FPDF (para geração de PDFs), extensão GD do PHP (para manipulação de imagens)
-
-Requisitos
-PHP 7.x ou superior
-
-MySQL 5.x ou superior
-
-Servidor Web (Apache recomendado)
-
-Extensão GD do PHP habilitada
-
-Navegador moderno
-
-Configuração do Ambiente
-Banco de Dados:
-
-Crie um banco chamado control_healthy.
-
-Importe as tabelas necessárias: usuarios, medico_paciente, informacoes_paciente, registros_pressao.
-
-Configuração do PHP:
-
-Edite os arquivos php/conexao.php e php/db.php para ajustar usuário, senha e host do seu MySQL.
-
-Permissões:
-
-Garanta que o servidor web tenha permissão de leitura e escrita nas pastas necessárias (para geração de arquivos temporários de imagem/PDF).
-
-Bibliotecas:
-
-O projeto já inclui a biblioteca FPDF e fontes em php/fpdf.php e php/font/.
-
-Como Executar
-Clone ou baixe o projeto em seu servidor local.
-
-Configure o banco de dados conforme as instruções acima.
-
-Acesse via navegador a tela de cadastro (html_css/cadastro.html) para criar usuários.
-
-Faça login como paciente ou médico para acessar as funcionalidades específicas.
-
-Registre medições, edite dados, associe pacientes a médicos, visualize gráficos e gere PDFs conforme o perfil de acesso.
-
-Observações
-Limite de Registros: Cada paciente pode registrar até 2 medições de pressão por dia.
-
-Segurança: O sistema utiliza sessões e validações para garantir que apenas usuários autenticados acessem seus respectivos recursos.
-
-Geração de PDF: Os relatórios utilizam a biblioteca FPDF, incluindo gráficos exportados em PNG pelo Chart.js.
-
-Associação Médico-Paciente: Apenas médicos autenticados podem associar pacientes, visualizar listas e acessar gráficos detalhados.
-
-Estrutura Modular: O código está organizado por responsabilidade, facilitando a manutenção e expansão futura.
-
+* **Limite de Registros:** Cada paciente pode registrar até 2 medições de pressão por dia.
+* **Segurança:** O sistema utiliza sessões e validações para garantir que apenas usuários autenticados acessem seus respectivos recursos.
+* **Associação Médico-Paciente:** Apenas médicos autenticados podem associar pacientes, visualizar listas e acessar gráficos detalhados.
