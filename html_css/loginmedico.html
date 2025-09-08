@@ -12,6 +12,7 @@
         <legend class="acess">
              Valide suas Informações
         </legend>
+        // Foto médico
         <div class="fotomedico">
             <img src="img/medico.png.png" alt="Foto do medico" width="150" height="150" draggable="false">
         </div>
@@ -38,16 +39,16 @@
             <a href="index.html" class="voltar" draggable="false">Voltar</a>
         </div>
     </form>
-    
+    // Fim do formulário
     
     <div id="inline-feedback-message" class="feedback-box hidden"></div>
 
     <div id="loginSuccess" class="hidden"><div class="checkmark">&#10004;</div>
     <p>Login confirmado! Redirecionando...
-
+// mensagem caso o login tenha tido sucesso
     </p>
   </div>
-
+//logica para validação das credenciais do usuario
     <script>
         document.querySelector("form.login").addEventListener("submit", function (e) {
             e.preventDefault();
@@ -65,11 +66,9 @@
             .then(response => response.json())
             .then(data => {
                 if (data.status === 'ok') {
-                    // Mantém o comportamento de sucesso com a caixa no topo
                     successBox.classList.remove("hidden");
                     setTimeout(() => { window.location.href = "telamedico.php"; }, 2000);
                 } else {
-                    // ATUALIZADO: Usa a nova caixa de feedback para o erro
                     feedbackBox.textContent = "email ou senha estão incorretos";
                     feedbackBox.className = "feedback-box error"; // Aplica o estilo de erro
                     setTimeout(() => { feedbackBox.className = "feedback-box hidden"; }, 3000);
@@ -84,4 +83,5 @@
         });
     </script>
 </body>
+
 </html>
