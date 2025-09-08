@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-// 1. VERIFICAÇÃO DE ACESSO
+// verificar acesso
 if (!isset($_SESSION['usuario_id']) || $_SESSION['usuario_tipo'] !== 'medico') {
     header("Location: loginmedico.html");
     exit();
@@ -15,7 +15,7 @@ $medico_id = $_SESSION['usuario_id'];
 
 require_once($_SERVER['DOCUMENT_ROOT'] . '/php/conexao.php');
 
-// 2. VERIFICAÇÃO DE PERMISSÃO
+// verificar permissão
 $stmt_perm = $conn->prepare("SELECT COUNT(*) FROM medico_paciente WHERE medico_id = ? AND paciente_id = ?");
 $stmt_perm->bind_param("ii", $medico_id, $paciente_id);
 $stmt_perm->execute();
@@ -25,7 +25,7 @@ if ($stmt_perm->get_result()->fetch_row()[0] == 0) {
 $stmt_perm->close();
 
 
-// 3. BUSCA DE DADOS DO PACIENTE
+// buscar dados do paciente
 $stmt_paciente = $conn->prepare("SELECT u.nome, u.email, i.endereco, i.telefone FROM usuarios u LEFT JOIN informacoes_paciente i ON u.id = i.usuario_id WHERE u.id = ?");
 $stmt_paciente->bind_param("i", $paciente_id);
 $stmt_paciente->execute();
