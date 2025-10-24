@@ -1,6 +1,6 @@
 <?php
-$host = "localhost";
-$usuario = "root";
+$host = "";
+$usuario = "";
 $senha = "";
 $banco = "control_healthy";
 
@@ -10,3 +10,4 @@ if ($conn->connect_error) {
     die("Erro na conexão: " . $conn->connect_error);
 }
 ?>
+
