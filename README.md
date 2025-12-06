@@ -106,11 +106,11 @@ O sistema oferece perfis distintos para pacientes e médicos com funcionalidades
 
 ## 🎓 Autores
 
-* **Alex Geymeson Lemos de Araujo** - RA: 82519534
-* **Arthur de Assis Matos** - RA: 825141669
-* **Kauann Dos Santos Silva** - RA: 825141522
-* **Paulo Barreiro** - RA: 825161684
-* **Victor Sousa de Carvalho** - RA: 820266034
-* **Vinicius Paiutti** - RA: 824216626
+* **[Alex Geymeson Lemos de Araujo](https://www.linkedin.com/in/alex-lemos-5b5b14361/)**
+* **[Arthur de Assis Matos](https://www.linkedin.com/in/arthur-matos-108713295/)**
+* **[Kauann Dos Santos Silva](https://www.linkedin.com/in/kauann-santos-931740242/)**
+* **[Paulo Barreiro](https://www.linkedin.com/in/paulobarreiro96/)** 
+* **[Victor Sousa de Carvalho](https://www.linkedin.com/in/victor-sousa-933138128/)** 
+* **[Vinicius Paiutti](https://www.linkedin.com/in/vinicius-paiutti/)** 
 
 **Professor Orientador:** Tulio Cearamicoli Vivaldini
