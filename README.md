@@ -1,6 +1,6 @@
 <div align="center">
   <img src="assets/controlhealthy.png" alt="Logo Control Healthy" width="200">
-  <h1>🩺 Control Healthy</h1>
+  <h1> Control Healthy</h1>
   <h3>Sistema de Monitoramento e Gestão de Pressão Arterial</h3>
   
   <p>
